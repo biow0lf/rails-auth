@@ -10,4 +10,16 @@ RSpec.describe RegistrationsController do
       expect(response).to have_http_status(:ok)
     end
   end
+
+  describe "#create" do
+    it "is expected to create user and redirect to dashboard" do
+      expect do
+        post registration_path, params: {user: {email: "me@example.com", password: "password"}}
+      end.to change(User, :count).by(1)
+
+      expect(response).to redirect_to(dashboard_path)
+
+      expect(flash[:notice]).to eq("You have successfully registered!")
+    end
+  end
 end
