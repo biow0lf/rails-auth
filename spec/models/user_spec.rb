@@ -11,9 +11,11 @@ RSpec.describe User do
 
   it { is_expected.to validate_presence_of(:email) }
 
-  describe "email uniq validations" do
-    subject { create(:user, password: "password", password_digest: nil) }
+  describe "#email" do
+    context "with unique email" do
+      subject { create(:user, password: "password", password_digest: nil) }
 
-    it { is_expected.to validate_uniqueness_of(:email) }
+      it { expect(subject).to validate_uniqueness_of(:email) }
+    end
   end
 end
