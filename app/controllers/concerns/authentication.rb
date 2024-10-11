@@ -4,15 +4,11 @@ module Authentication
   end
 
   def restore_authentication
-    User.find_by(id: cookies[:user_id])
+    Current.user = User.find_by(id: cookies[:user_id])
   end
 
   def request_authentication
     redirect_to new_session_path, notice: "You must be signed in to perform that action"
-  end
-
-  def restore_authentication
-    Current.user = User.find_by(id: cookies[:user_id])
   end
 
   # @param user [User]
