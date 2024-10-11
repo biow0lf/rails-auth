@@ -8,4 +8,6 @@ class User < ApplicationRecord
   validates :email, presence: true
 
   validates :email, uniqueness: true
+
+  normalizes :email, with: ->(email) { email.strip.downcase }
 end
