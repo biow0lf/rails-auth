@@ -6,6 +6,8 @@ class SessionsController < ApplicationController
     user = User.authenticate_by(session_params)
 
     if user.present?
+      sign_in(user)
+
       redirect_to dashboard_path, notice: "Logged in with #{user.email}"
     else
       flash.now[:notice] = "Invalid email or password"
