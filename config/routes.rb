@@ -14,5 +14,7 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: :show
 
+  resource :registration, only: [:new, :create]
+
   root "pages#home"
 end
