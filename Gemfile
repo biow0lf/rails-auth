@@ -55,4 +55,7 @@ group :test do
   gem "selenium-webdriver"
   gem "rails-controller-testing"
   gem "shoulda-matchers"
+  gem "database_rewinder",
+    git: "https://github.com/kucho/database_rewinder.git",
+    branch: "fix/rails-7-2-connection-warning"
 end

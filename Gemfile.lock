@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/kucho/database_rewinder.git
+  revision: 6f49f6e7311c071daec11af59ffaa75975394c8c
+  branch: fix/rails-7-2-connection-warning
+  specs:
+    database_rewinder (1.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -318,6 +325,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   capybara
+  database_rewinder!
   factory_bot_rails
   faker
   importmap-rails
