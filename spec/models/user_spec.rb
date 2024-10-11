@@ -12,13 +12,13 @@ RSpec.describe User do
   it { is_expected.to validate_presence_of(:email) }
 
   describe "#email" do
-    context "unique email" do
+    context "uniqueness" do
       subject { create(:user) }
 
       it { expect(subject).to validate_uniqueness_of(:email).case_insensitive }
     end
 
-    context "email normalization" do
+    context "normalization" do
       subject { create(:user, email: " ME@example.COM ") }
 
       it { expect(subject.email).to eq("me@example.com") }
