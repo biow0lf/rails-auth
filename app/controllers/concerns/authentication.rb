@@ -13,6 +13,6 @@ module Authentication
 
   # @param user [User]
   def sign_in(user)
-    cookies.signed.permanent[:user_id] = user.id
+    cookies.signed.permanent[:user_id] = {value: user.id, httponly: true}
   end
 end
