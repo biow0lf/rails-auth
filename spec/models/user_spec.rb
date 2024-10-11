@@ -24,4 +24,6 @@ RSpec.describe User do
       it { expect(subject.email).to eq("me@example.com") }
     end
   end
+
+  it { is_expected.to have_many(:sessions).dependent(:destroy) }
 end
