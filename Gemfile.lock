@@ -162,6 +162,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
+    ostruct (0.6.0)
     propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -321,6 +322,7 @@ DEPENDENCIES
   faker
   importmap-rails
   jbuilder
+  ostruct
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.0.beta1)
