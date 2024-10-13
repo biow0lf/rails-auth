@@ -58,4 +58,38 @@ RSpec.describe SessionsController do
       end
     end
   end
+
+  describe "#destroy" do
+    context "when user is signed in" do
+      it "is expected to" do
+        user = create(:user, :with_default_password)
+
+        _sign_in(user)
+
+        get dashboard_path
+
+        expect(response).to render_template(:show)
+
+        expect(response).to have_http_status(:ok)
+
+        expect do
+          delete session_path
+        end.to change(Session, :count).by(-1)
+
+        expect(response).to redirect_to(root_path)
+
+        get dashboard_path
+
+        expect(response).to redirect_to(new_session_path)
+      end
+    end
+
+    context "when user is not signed in" do
+      it "is expected to redirect to new session path" do
+        delete session_path
+
+        expect(response).to redirect_to(new_session_path)
+      end
+    end
+  end
 end
