@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  before_action :require_authentication, only: :destroy
+  before_action :redirect_if_signed_in, only: [:new, :create]
+
   def new
   end
 
@@ -14,6 +17,12 @@ class SessionsController < ApplicationController
 
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    sign_out
+
+    redirect_to root_path, notice: "You have been signed out"
   end
 
   private
