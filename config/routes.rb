@@ -18,5 +18,7 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
+  resource :password_reset, only: [:new, :create, :edit, :update]
+
   root "pages#home"
 end
