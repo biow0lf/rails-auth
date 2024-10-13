@@ -37,6 +37,8 @@ gem "bootsnap", require: false
 # Fix deprecation
 gem "ostruct"
 
+gem "pry-rails"
+
 group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
