@@ -12,4 +12,8 @@ class User < ApplicationRecord
   normalizes :email, with: ->(email) { email.strip.downcase }
 
   has_many :sessions, dependent: :destroy
+
+  generates_token_for :reset_password, expires_in: 1.hour do
+    password_salt.last(10)
+  end
 end

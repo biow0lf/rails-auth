@@ -8,6 +8,10 @@ class PasswordResetsController < ApplicationController
     user = User.find_by(email: params[:email])
 
     if user.present?
+      token = user.generate_token_for(:password_reset)
+
+      UserMailer.with(user: user, password_reset_token: token).password_reset.deliver_later
+
       redirect_to root_path, notice: "Email sent with password reset instructions"
     else
       flash.now[:notice] = "No user found with that email address"
