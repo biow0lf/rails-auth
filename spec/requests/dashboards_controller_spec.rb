@@ -4,9 +4,9 @@ RSpec.describe DashboardsController do
   describe "#show" do
     context "when user is signed in" do
       it "is expected to render template show with status ok" do
-        user = create(:user, password: "password")
+        user = create(:user, :with_default_password)
 
-        post session_path, params: {session: {email: user.email, password: "password"}}
+        _sign_in(user)
 
         get dashboard_path
 
