@@ -7,4 +7,4 @@ Based on [Alexandre Ruban](https://github.com/alexandreruban) [Cookie-based auth
 With changes from me:
 
 1. Factories instead fixtures. Read as: FactoryBot instead of Rails Fixtures.
-2. Specs instead tests. Read as: RSpec instead Minitest
+2. Specs instead tests. Read as: RSpec instead Minitest.
