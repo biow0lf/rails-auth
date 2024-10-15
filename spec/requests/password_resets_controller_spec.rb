@@ -90,6 +90,30 @@ RSpec.describe PasswordResetsController do
           expect(response.body).to include("Invalid token. Try again by requesting a new password reset link.")
         end
       end
+
+      context "with valid token and password doesn't match password confirmation" do
+        it "is expected to render template edit with status unprocessable entity" do
+          user = create(:user)
+
+          token = user.generate_token_for(:password_reset)
+
+          patch password_reset_path, params: {
+            password_reset_token: token,
+            password_reset: {
+              password: "newpassword",
+              password_confirmation: "notmatching"
+            }
+          }
+
+          expect(response).to render_template(:edit)
+
+          expect(response).to have_http_status(:unprocessable_entity)
+
+          expect(flash.now[:notice]).to eq("Password confirmation doesn't match Password")
+
+          expect(response.body).to include("Password confirmation doesn&#39;t match Password")
+        end
+      end
     end
   end
 end
