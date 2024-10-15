@@ -70,6 +70,26 @@ RSpec.describe PasswordResetsController do
           expect(user.reload.authenticate("newpassword")).to eq(user)
         end
       end
+
+      context "with invalid token" do
+        it "is expected to redirect to new password reset path" do
+          patch password_reset_path, params: {
+            password_reset_token: "invalid",
+            password_reset: {
+              password: "newpassword",
+              password_confirmation: "newpassword"
+            }
+          }
+
+          expect(response).to redirect_to(new_password_reset_path)
+
+          expect(flash[:notice]).to eq("Invalid token. Try again by requesting a new password reset link.")
+
+          follow_redirect!
+
+          # assert_select "main", /Invalid token/
+        end
+      end
     end
   end
 end
