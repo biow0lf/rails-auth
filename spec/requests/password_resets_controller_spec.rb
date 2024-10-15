@@ -15,7 +15,7 @@ RSpec.describe PasswordResetsController do
 
   describe "#create" do
     context "when user us not signed in" do
-      it "is expected to" do
+      it "is expected to redirect to root path" do
         user = create(:user)
 
         expect do
