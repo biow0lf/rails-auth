@@ -24,7 +24,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    user = User.find_by_token_for(:password_reset, params[:password_reset_token])
+    user = User.find_by_password_reset_token(params[:password_reset_token])
 
     if user.blank?
       flash[:notice] = "Invalid token. Try again by requesting a new password reset link."
