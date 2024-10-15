@@ -12,4 +12,20 @@ RSpec.describe PasswordResetsController do
       end
     end
   end
+
+  describe "#create" do
+    context "when user us not signed in" do
+      it "is expected to" do
+        user = create(:user)
+
+        expect do
+          post password_reset_path, params: {email: user.email}
+        end.to have_enqueued_mail(UserMailer, :password_reset)
+
+        expect(response).to redirect_to(root_path)
+
+        expect(flash[:notice]).to eq("Email sent with password reset instructions")
+      end
+    end
+  end
 end
