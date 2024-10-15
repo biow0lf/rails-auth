@@ -87,7 +87,7 @@ RSpec.describe PasswordResetsController do
 
           follow_redirect!
 
-          # assert_select "main", /Invalid token/
+          expect(response.body).to include("Invalid token. Try again by requesting a new password reset link.")
         end
       end
     end
